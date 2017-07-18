@@ -1,45 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <style>
-    body { background-color: #333; background-image: url('css/darknoise.png'); max-width: 800px; margin: 50px auto; }
-    #player { min-height: 450px; box-shadow: 0 0 30px #000; margin-bottom: 30px; transition: min-height 2000ms linear; overflow: hidden; position: relative; }
-    .throbber { position: absolute; top: 220px; left: 300px; }
-    video { display: block; position: absolute; }
-  </style>
-  <title>WTF Player</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="webtorrent.min.js"></script>
+    <script src="buffer.js"></script>
+    <script src="script.js"></script>
+    <title>WTF Player</title>
 </head>
 <body>
 
-  <div id="player">
-    <div id="circleG" class="throbber" style="display:none">
-      <div id="circleG_1" class="circleG"></div>
-      <div id="circleG_2" class="circleG"></div>
-      <div id="circleG_3" class="circleG"></div>
+    <div class="center">
+        <div id="videoblock">
+            <img id="loader" src="ajax-loader.gif">
+            <video id="player">
+                <track id="subtitles" kind="subtitles">
+            </video>
+        </div>
+        <div class="inputline">
+            <label>Video:</label>
+            <input id="videoHash">
+        </div>
+        <div class="inputline">
+            <label>Titulky:</label>
+            <input id="subtitlesHash">
+        </div>
+        <div class="buttonline">
+            <button onclick="hobluj()">HOBLUJ!</button>
+        </div>
     </div>
-  </div>
-
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Infohash" id="hashInput" style="background-color:#444;border-color:#111;color:#fff;font-family:monospace">
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="button" onclick="
-        location = location.href.replace(location.hash, '') + '#' + hashInput.value
-        location.reload()
-      ">Play</button>
-    </span>
-  </div>
-
-  <script src="dist.js"></script>
-  <script>
-    var hash = location.hash.substr(1)
-    play(hash)
-    //hashInput.value = hash
-  </script>
-
-  <!-- throbber animation -->
-  <style> #circleG{ width:149.33333333333334px; } .circleG{ background-color:#222222; float:left; height:32px; margin-left:17px; width:32px; -webkit-animation-name:bounce_circleG; -webkit-animation-duration:1.9500000000000002s; -webkit-animation-iteration-count:infinite; -webkit-animation-direction:normal; -webkit-border-radius:21px; animation-name:bounce_circleG; animation-duration:1.9500000000000002s; animation-iteration-count:infinite; animation-direction:normal; border-radius:21px; } #circleG_1{ -webkit-animation-delay:0.39s; animation-delay:0.39s; } #circleG_2{ -webkit-animation-delay:0.9099999999999999s; animation-delay:0.9099999999999999s; } #circleG_3{ -webkit-animation-delay:1.1700000000000002s; animation-delay:1.1700000000000002s; } @-webkit-keyframes bounce_circleG{ 0%{ } 50%{ background-color:#333} 100%{ } } @keyframes bounce_circleG{ 0%{ } 50%{ background-color:#333} 100%{ } } </style>
 
 </body>
 </html>
